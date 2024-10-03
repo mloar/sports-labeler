@@ -3,15 +3,19 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN apk update
-RUN apk add build-base python3
+RUN apk add nodejs
 
 COPY package.json ./
 COPY bun.lockb ./
 
-RUN bun install
+RUN apk add --no-cache --virtual .build-deps \
+  build-base \
+  python3 \
+  && bun install \
+  && apk del .build-deps
 
-COPY .env ./
-COPY src ./
+RUN mkdir ./src
+COPY src ./src
 
 EXPOSE 14831
 
