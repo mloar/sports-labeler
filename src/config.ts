@@ -1,5 +1,6 @@
 import 'dotenv/config';
 
+export const DB_PATH = process.env.DB_PATH ?? '';
 export const DID = process.env.DID ?? '';
 export const SIGNING_KEY = process.env.SIGNING_KEY ?? '';
 export const PORT = process.env.PORT ? Number(process.env.PORT) : 4002;
