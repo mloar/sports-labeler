@@ -22,7 +22,7 @@ try {
 } catch (error) {
   if (error instanceof Error && 'code' in error && error.code === 'ENOENT') {
     cursor = Math.floor(Date.now() * 1000);
-    logger.info(`Cursor not found in cursor.txt, setting cursor to: ${cursor} (${epochUsToDateTime(cursor)})`);
+    logger.info(`Cursor not found in ${CURSOR_PATH}, setting cursor to: ${cursor} (${epochUsToDateTime(cursor)})`);
     fs.writeFileSync(CURSOR_PATH, cursor.toString(), 'utf8');
   } else {
     logger.error(error);
@@ -44,7 +44,7 @@ jetstream.on('open', () => {
   cursorUpdateInterval = setInterval(() => {
     if (jetstream.cursor) {
       logger.info(`Cursor updated to: ${jetstream.cursor} (${epochUsToDateTime(jetstream.cursor)})`);
-      fs.writeFile('cursor.txt', jetstream.cursor.toString(), (err) => {
+      fs.writeFile(CURSOR_PATH, jetstream.cursor.toString(), (err) => {
         if (err) logger.error(err);
       });
     }
@@ -84,7 +84,7 @@ jetstream.start();
 function shutdown() {
   try {
     logger.info('Shutting down gracefully...');
-    fs.writeFileSync('cursor.txt', jetstream.cursor!.toString(), 'utf8');
+    fs.writeFileSync(CURSOR_PATH, jetstream.cursor!.toString(), 'utf8');
     jetstream.close();
     labelerServer.stop();
     metricsServer.close();
