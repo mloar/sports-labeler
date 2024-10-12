@@ -6,6 +6,7 @@ import { LABELS } from './constants.js';
 import logger from './logger.js';
 
 const loginCredentials: LoginCredentials = {
+  pds: "https://hooray.social",
   identifier: BSKY_IDENTIFIER,
   password: BSKY_PASSWORD,
 };
