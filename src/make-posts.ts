@@ -9,7 +9,7 @@ await bot.login({
 });
 
 const post = await bot.post({
-  text: `Like the replies to this post to receive labels for ${process.argv[2].toUpperCase()}  teams.`,
+  text: `Like the replies to this post to receive labels for ${process.argv[2].toUpperCase()} teams.`,
   threadgate: { allowLists: [] }
 });
 
