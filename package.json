@@ -28,7 +28,7 @@
   "dependencies": {
     "@atproto/api": "^0.13.14",
     "@skyware/bot": "^0.3.7",
-    "@skyware/jetstream": "^0.1.9",
+    "@skyware/jetstream": "^0.2.0",
     "@skyware/labeler": "^0.1.13",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
